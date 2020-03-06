@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 
 import com.neo.mx.websocket.atm.models.MensajeVO;
 
+
 @Controller
 public class ChatController {
 	
@@ -26,7 +27,7 @@ public class ChatController {
 	@SendTo("/chat/mensaje")
 	public MensajeVO recibeMensaje(MensajeVO mensaje) {
 		mensaje.setFecha(new Date().getTime());
-		
+
 		if(mensaje.getTipo().equals("NUEVO_USUARIO")) {
 			mensaje.setColor(colores[new Random().nextInt(colores.length)]);
 			mensaje.setTexto("nuevo usuario");
@@ -34,14 +35,14 @@ public class ChatController {
 //		else {
 //			chatService.guardar(mensaje);
 //		}
-		
+
 		return mensaje;
 	}
 
 	@MessageMapping("/escribiendo")
 	@SendTo("/chat/escribiendo")
 	public String estaEscribiendo(String username) {
-		return username.concat(" está escribiendo ...");
+		return username.concat("está escribiendo ...");
 	}
 	
 //	@MessageMapping("/historial")
